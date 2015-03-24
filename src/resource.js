@@ -1,4 +1,5 @@
 var res = {
+	PlayScene_png : "res/images/PlayScene.png"
 };
 
 var g_resources = [];
