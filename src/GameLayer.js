@@ -7,9 +7,16 @@ var GameLayer = cc.LayerColor.extend({
         this.setBackground.setPosition(new cc.Point( screenWidth/2 , screenHeight/2 ));
         this.addChild( this.setBackground );
 
+        this.basket = new Basket();
+        this.basket.setPosition( new cc.Point( screenWidth-100 , screenHeight-150 ));
+        this.addChild( this.basket );
+        this.basket.scheduleUpdate();
+
         return true;
     }   
 });
+
+
  
 var StartScene = cc.Scene.extend({
     onEnter: function() {
