@@ -12,7 +12,8 @@
         "src/resource.js",
         "src/GameLayer.js",
         "src/Basket.js",
-        "src/Plats.js"
+        "src/Plats.js",
+        "src/Dessert.js"
     ]
     
 }
