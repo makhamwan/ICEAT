@@ -21,17 +21,17 @@ var GameLayer = cc.LayerColor.extend({
 
         this.addKeyboardHandlers();
 
-        // this.dessert = new Dessert();
-        // this.dessert.setPosition( new cc.Point( 200 , screenHeight-50 ));
-        // this.addChild( this.plats );
-        // this.dessert.scheduleUpdate();
+        this.dessert = new Dessert();
+        this.dessert.setPosition( new cc.Point( 200 , screenHeight-90 ));
+        this.addChild( this.dessert );
+        this.dessert.scheduleUpdate();
+
         return true;
     },
 
     onKeyDown: function( keyCode, event ) {
-        if ( keyCode == cc.KEY.up ) this.basket.DIR.UP;
-        else if ( keyCode == cc.KEY.down ) this.basket.DIR.DOWN;
-        this.basket.move();
+        console.log(keyCode.toString());
+        this.basket.setDirection(keyCode);
     },
 
     onKeyUp: function( keyCode, event ) {

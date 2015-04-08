@@ -1,6 +1,7 @@
 var Basket = cc.Sprite.extend({
 	
 	ctor: function() {
+		console.log("I am a basket");		
 		this._super();
 		this.initWithFile( 'res/images/Basket.png' );
 		this.direction = Basket.DIR.UP;
@@ -18,11 +19,22 @@ var Basket = cc.Sprite.extend({
 				this.setPosition( new cc.Point( pos.x, pos.y - 10 ) );
 			//}
 		}
+	},
+
+	setDirection: function(keyCode){
+		if ( keyCode == cc.KEY.up ) {
+            this.direction = Basket.DIR.UP;
+            this.move();
+        }
+        else if ( keyCode == cc.KEY.down ) {
+            this.direction = Basket.DIR.DOWN;
+            this.move();
+        }
 	}
 
 });
 
 Basket.DIR = {
 	UP: 1,
-	RIGHT: 2
+	DOWN: 2
 };
