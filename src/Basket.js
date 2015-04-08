@@ -11,12 +11,12 @@ var Basket = cc.Sprite.extend({
 		var pos = this.getPosition();
 		if( this.direction == Basket.DIR.UP ){			
 			if ( pos.y < screenHeight-200 ) {
-				this.setPosition( new cc.Point( pos.x, pos.y + 10 ) );
+				this.setPosition( new cc.Point( pos.x, pos.y + 4 ) );
 			}
 		}
 		else if( this.direction == Basket.DIR.DOWN ){
 			if ( pos.y > 100 ) {
-				this.setPosition( new cc.Point( pos.x, pos.y - 10 ) );
+				this.setPosition( new cc.Point( pos.x, pos.y - 4 ) );
 			}
 		}
 	},
@@ -24,11 +24,13 @@ var Basket = cc.Sprite.extend({
 	setDirection: function(keyCode){
 		if ( keyCode == cc.KEY.up ) {
             this.direction = Basket.DIR.UP;
-            this.move();
+            this.schedule(this.move , 0.01 );
+            //this.move();
         }
         else if ( keyCode == cc.KEY.down ) {
             this.direction = Basket.DIR.DOWN;
-            this.move();
+            this.schedule(this.move , 0.01 );
+            //this.move();
         }
 	}
 
