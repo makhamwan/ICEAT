@@ -24,7 +24,11 @@ var GameLayer = cc.LayerColor.extend({
         this.dessert = new Dessert();
         this.dessert.setPosition( new cc.Point( 200 , screenHeight-60 ));
         this.addChild( this.dessert );
+        this.dessert.release();
+//        this.dessert.scheduleOnce( this.dessert.release , 5 );
         this.dessert.scheduleUpdate();
+
+
 
         return true;
     },
