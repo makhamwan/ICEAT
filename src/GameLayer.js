@@ -10,19 +10,19 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild( this.setBackground );
 
         this.basket = new Basket();
-        this.basket.setPosition( new cc.Point( screenWidth-100 , screenHeight-150 ));
+        this.basket.setPosition( new cc.Point( screenWidth-100 , screenHeight-200 ));
         this.addChild( this.basket );
         this.basket.scheduleUpdate();
 
         this.plats = new Plats();
-        this.plats.setPosition( new cc.Point( 200 , screenHeight-150 ));
+        this.plats.setPosition( new cc.Point( 230 , screenHeight-120 ));
         this.addChild( this.plats );
         this.plats.scheduleUpdate();
 
         this.addKeyboardHandlers();
 
         this.dessert = new Dessert();
-        this.dessert.setPosition( new cc.Point( 200 , screenHeight-90 ));
+        this.dessert.setPosition( new cc.Point( 200 , screenHeight-60 ));
         this.addChild( this.dessert );
         this.dessert.scheduleUpdate();
 
