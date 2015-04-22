@@ -10,29 +10,15 @@ var Basket = cc.Sprite.extend({
 				var pos = this.getPosition();
 		if( this.direction == Basket.DIR.UP ){			
 			if ( pos.y < screenHeight-200 ) {
-				this.setPosition( new cc.Point( pos.x, pos.y + 4 ) );
+				this.setPosition( new cc.Point( pos.x, pos.y + 9 ) );
 			}
 		}
 		else if( this.direction == Basket.DIR.DOWN ){
 			if ( pos.y > 100 ) {
-				this.setPosition( new cc.Point( pos.x, pos.y - 4 ) );
+				this.setPosition( new cc.Point( pos.x, pos.y - 9 ) );
 			}
 		}
 	},
-
-	// move: function( dt ) {
-	// 	var pos = this.getPosition();
-	// 	if( this.direction == Basket.DIR.UP ){			
-	// 		if ( pos.y < screenHeight-200 ) {
-	// 			this.setPosition( new cc.Point( pos.x, pos.y + 4 ) );
-	// 		}
-	// 	}
-	// 	else if( this.direction == Basket.DIR.DOWN ){
-	// 		if ( pos.y > 100 ) {
-	// 			this.setPosition( new cc.Point( pos.x, pos.y - 4 ) );
-	// 		}
-	// 	}
-	// },
 
 	setDirection: function(keyCode){
 		if ( keyCode == cc.KEY.up ) {
@@ -42,8 +28,6 @@ var Basket = cc.Sprite.extend({
         }
         else if ( keyCode == cc.KEY.down ) {
             this.direction = Basket.DIR.DOWN;
-            //this.schedule(this.move , 0.01 );
-            //this.move();
         }
 	}
 
