@@ -9,7 +9,7 @@ var Dessert = cc.Sprite.extend({
 
 	update: function() {
 		var pos = this.getPosition();
-		this.setPosition( new cc.Point( pos.x, pos.y - 5 ) );
+		this.setPosition( pos.x, pos.y - 5 );
 	}
 
 	// release: function() {

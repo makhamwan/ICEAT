@@ -1,0 +1,8 @@
+var Icecream = Dessert.extend({
+	
+	ctor: function() {
+		this._super();
+//		this.initWithFile( 'res/images/Icecream.png' );
+	},
+
+});

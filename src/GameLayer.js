@@ -18,7 +18,13 @@ var GameLayer = cc.LayerColor.extend({
         var random = Math.random()*100;
         console.log(random);
 
+        this.scheduleUpdate();
+
         return true;
+    },
+
+    update: function(){
+        this.randomPosition();
     },
 
     initBasket: function() {
@@ -35,10 +41,26 @@ var GameLayer = cc.LayerColor.extend({
         this.plats.scheduleUpdate();
     },
 
+    randomPosition: function(){
+        var random = Math.floor(Math.random() *40);
+        var whereX = Math.floor(Math.random() * (screenWidth-200) );
+
+        if ( random == 1){
+            this.dessert = new Dessert();
+            this.addChild( this.dessert );
+            this.dessert.setPosition( new cc.Point( whereX , screenHeight-60 ) );
+            this.dessert.scheduleUpdate();
+        }
+    },
+
+    // randomDessert: function(){
+
+    // },
+
     initDessert: function(){
         this.dessert = new Dessert();
         this.dessert.setPosition( new cc.Point( 200 , screenHeight-60 ));
-        this.addChild( this.dessert );
+//        this.addChild( this.dessert );
 //        this.dessert.release();
 //        this.dessert.scheduleOnce( this.dessert.release , 5 );
         this.dessert.scheduleUpdate();
