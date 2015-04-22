@@ -10,12 +10,12 @@ var Basket = cc.Sprite.extend({
 				var pos = this.getPosition();
 		if( this.direction == Basket.DIR.UP ){			
 			if ( pos.y < screenHeight-200 ) {
-				this.setPosition( new cc.Point( pos.x, pos.y + 9 ) );
+				this.setPosition( new cc.Point( pos.x, pos.y + 7.4 ) );
 			}
 		}
 		else if( this.direction == Basket.DIR.DOWN ){
 			if ( pos.y > 100 ) {
-				this.setPosition( new cc.Point( pos.x, pos.y - 9 ) );
+				this.setPosition( new cc.Point( pos.x, pos.y - 7.4 ) );
 			}
 		}
 	},

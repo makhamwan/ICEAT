@@ -7,6 +7,11 @@ var Bullet = cc.Sprite.extend({
 
 	update: function(){
 		var pos = this.getPosition();
+
+		if (pos.x<0){
+			this.removeFromParent();
+		}
+
 		this.setPosition( pos.x - 19 , pos.y );
 	}
 

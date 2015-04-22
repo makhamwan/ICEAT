@@ -66,14 +66,9 @@ var GameLayer = cc.LayerColor.extend({
     onKeyDown: function( keyCode, event ) {
         console.log(keyCode.toString());
         this.basket.setDirection(keyCode);
-        
-        //
-        ///
-        if (keyCode == 32){
-            this.initBullet();
-        }
-        ///
-        //
+        // if (keyCode == 32){
+        //     this.initBullet();
+        // }
     },
 
     initBullet: function(){
@@ -83,8 +78,12 @@ var GameLayer = cc.LayerColor.extend({
         this.bullet.scheduleUpdate();
         this.addChild(this.bullet);
     },
+
     onKeyUp: function( keyCode, event ) {
         console.log( 'Up: ' + keyCode.toString() );
+        if (keyCode == 32){
+            this.initBullet();
+        }
     },
 
     addKeyboardHandlers: function() {
