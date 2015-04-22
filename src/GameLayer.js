@@ -1,7 +1,10 @@
 var GameLayer = cc.LayerColor.extend({
-    
+        
     init: function() {
-      
+        
+        this.dessertArr = [];
+        this.bulletArr = [];
+
         this._super( new cc.Color( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0 , 0 ) );
    
@@ -25,6 +28,7 @@ var GameLayer = cc.LayerColor.extend({
 
     update: function(){
         this.randomPosition();
+        this.checkPrecision();
     },
 
     initBasket: function() {
@@ -53,6 +57,16 @@ var GameLayer = cc.LayerColor.extend({
         }
     },
 
+    checkPrecision: function(){
+        for (var i = 0 ; i < this.dessertArr ; i++){
+            for (var j = 0 ; j < this.bulletArr ; j++){
+                if ( this.dessertArr[i].getPosition() == this.bulletArr[j].getPosition() ){
+                    console.log("hit");
+                }
+            }
+        }
+    },
+
     // randomDessert: function(){
 
     // },
@@ -61,14 +75,12 @@ var GameLayer = cc.LayerColor.extend({
         this.dessert = new Dessert();
         this.dessert.setPosition( new cc.Point( 200 , screenHeight-60 ));
         this.dessert.scheduleUpdate();
+        this.dessertArr.push(this.dessert);
     },
 
     onKeyDown: function( keyCode, event ) {
         console.log(keyCode.toString());
         this.basket.setDirection(keyCode);
-        // if (keyCode == 32){
-        //     this.initBullet();
-        // }
     },
 
     initBullet: function(){
@@ -77,6 +89,7 @@ var GameLayer = cc.LayerColor.extend({
         this.bullet.setPosition(pos.x,pos.y);
         this.bullet.scheduleUpdate();
         this.addChild(this.bullet);
+        this.dessertArr.push(this.bullet);  
     },
 
     onKeyUp: function( keyCode, event ) {

@@ -9,18 +9,10 @@ var Dessert = cc.Sprite.extend({
 
 	update: function() {
 		var pos = this.getPosition();
-
 		if (pos.y<0){
 			this.removeFromParent();
 		}
-
 		this.setPosition( pos.x, pos.y - 5 );
 	}
-
-	// release: function() {
-	// 	var pos = this.getPosition();
-	// 	this.setPosition( new cc.Point( pos.x, pos.y - 5 ) );
-	// 	//this.schedule(this.release , 0.0002 );
-	// }
 
 });
