@@ -1,36 +1,47 @@
 var GameLayer = cc.LayerColor.extend({
     
     init: function() {
-        
+      
         this._super( new cc.Color( 127, 127, 127, 255 ) );
-        this.setPosition( new cc.Point( 0, 0 ) );
+        this.setPosition( new cc.Point( 0 , 0 ) );
    
-        this.setBackground = new cc.Sprite.create( "res/images/PlayScene.png" );
-        this.setBackground.setPosition(new cc.Point( screenWidth/2 , screenHeight/2 ));
-        this.addChild( this.setBackground );
+        this.background = new cc.Sprite.create( "res/images/PlayScene.png" );
+        this.background.setPosition(new cc.Point( screenWidth/2 , screenHeight/2 ));
+        this.addChild( this.background );
 
+        this.addKeyboardHandlers();
+
+        this.initBasket();
+        this.initPlats();
+        this.initDessert();
+
+        var random = Math.random()*100;
+        console.log(random);
+
+        return true;
+    },
+
+    initBasket: function() {
         this.basket = new Basket();
         this.basket.setPosition( new cc.Point( screenWidth-100 , screenHeight-200 ));
         this.addChild( this.basket );
         this.basket.scheduleUpdate();
+    },
 
+    initPlats: function(){
         this.plats = new Plats();
         this.plats.setPosition( new cc.Point( 230 , screenHeight-120 ));
         this.addChild( this.plats );
         this.plats.scheduleUpdate();
+    },
 
-        this.addKeyboardHandlers();
-
+    initDessert: function(){
         this.dessert = new Dessert();
         this.dessert.setPosition( new cc.Point( 200 , screenHeight-60 ));
         this.addChild( this.dessert );
-        this.dessert.release();
+//        this.dessert.release();
 //        this.dessert.scheduleOnce( this.dessert.release , 5 );
         this.dessert.scheduleUpdate();
-
-
-
-        return true;
     },
 
     onKeyDown: function( keyCode, event ) {
@@ -56,7 +67,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
 });
- 
+
 var StartScene = cc.Scene.extend({    
     onEnter: function() {
         this._super();

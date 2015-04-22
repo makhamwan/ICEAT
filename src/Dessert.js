@@ -7,10 +7,15 @@ var Dessert = cc.Sprite.extend({
 
 	},
 
-	release: function() {
+	update: function() {
 		var pos = this.getPosition();
 		this.setPosition( new cc.Point( pos.x, pos.y - 5 ) );
-		this.schedule(this.release , 0.0002 );
 	}
+
+	// release: function() {
+	// 	var pos = this.getPosition();
+	// 	this.setPosition( new cc.Point( pos.x, pos.y - 5 ) );
+	// 	//this.schedule(this.release , 0.0002 );
+	// }
 
 });
