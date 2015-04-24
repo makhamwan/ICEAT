@@ -28,7 +28,7 @@ var GameLayer = cc.LayerColor.extend({
     update: function(){
         if(this.bulletArr.length != 0 ) {
             for(var i=0 ; i<this.bulletArr.length ; i++) {
-                console.log(this.bulletArr[i].getPositionX());
+                //console.log(this.bulletArr[i].getPositionX());
             }
         }
         this.randomPosition();
@@ -65,17 +65,19 @@ var GameLayer = cc.LayerColor.extend({
     checkPrecision: function(){
         for (var i = 0 ; i < this.dessertArr.length ; i++){
             for (var j = 0 ; j < this.bulletArr.length ; j++){
+                
                 var dx = this.dessertArr[i].getPositionX();
                 var dy = this.dessertArr[i].getPositionY();
                 var bx = this.bulletArr[j].getPositionX();
                 var by = this.bulletArr[j].getPositionY();
 
-                var disX = Math.abs(dx , bx);
+                //var disX = Math.abs(dx , bx);
                 var disY = Math.abs(dy , by);
-                console.log(disX +" // "+ disY);
+                //console.log(disX +" // "+ disY);
 
-                if ( disX < 50 && disY < 50 ){
-                    console.log("hit");
+                if ( dx == bx && disY < 50 ){
+                //    console.log("hit");
+                //    this.bulletArr[j].unhit = false;
                 }
             }
         }
@@ -84,13 +86,6 @@ var GameLayer = cc.LayerColor.extend({
     // randomDessert: function(){
 
     // },
-
-    initDessert: function(){
-        this.dessert = new Dessert();
-        this.dessert.setPosition( new cc.Point( 200 , screenHeight-60 ));
-        this.dessert.scheduleUpdate();
-        this.dessertArr.push(this.dessert);
-    },
 
     onKeyDown: function( keyCode, event ) {
         console.log(keyCode.toString());
