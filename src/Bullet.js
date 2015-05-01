@@ -6,21 +6,33 @@ var Bullet = cc.Sprite.extend({
 	},
 
 	update: function(){
-		// this.unhit = true;
+		//this.unhit = true;
 		var pos = this.getPosition();
-
-		if(this.unhit) {
-			if (pos.x<0){	
-				this.removeFromParent();
-			}
-			this.setPosition( pos.x - 19 , pos.y );
-		}
-		
-		// if (pos.y<0){
+		//new
+		// //if(this.unhit) {
+		// 	if (pos.x<0){	
 		// 		this.removeFromParent();
 		// 	}
-		// 	this.setPosition( pos.x , pos.y - 19);
-		// }
-	}
+		// 	this.setPosition( pos.x - 19 , pos.y );
+		// //}
+		
+		// // if (pos.y<0){
+		// // 		this.removeFromParent();
+		// // 	}
+		// // 	this.setPosition( pos.x , pos.y - 19);
+		// // }
 
+		if (pos.x<0){
+			this.removeFromParent();
+			// if(this.unhit) {
+			// 	if (pos.x<0){	
+			// 		this.removeFromParent();
+			// 	}
+			// 	this.setPosition( pos.x - 19 , pos.y );
+ 		// 	}
+		//	this.setPosition( pos.x - 19 , pos.y );
+		}
+			
+		this.setPosition( pos.x - 19 , pos.y );
+	}
 });

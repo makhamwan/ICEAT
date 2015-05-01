@@ -7,7 +7,7 @@ var Basket = cc.Sprite.extend({
 	},
 
 	update: function(){
-				var pos = this.getPosition();
+		var pos = this.getPosition();
 		if( this.direction == Basket.DIR.UP ){			
 			if ( pos.y < screenHeight-200 ) {
 				this.setPosition( new cc.Point( pos.x, pos.y + 7.4 ) );
