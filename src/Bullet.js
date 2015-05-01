@@ -24,15 +24,7 @@ var Bullet = cc.Sprite.extend({
 
 		if (pos.x<0){
 			this.removeFromParent();
-			// if(this.unhit) {
-			// 	if (pos.x<0){	
-			// 		this.removeFromParent();
-			// 	}
-			// 	this.setPosition( pos.x - 19 , pos.y );
- 		// 	}
-		//	this.setPosition( pos.x - 19 , pos.y );
 		}
-			
 		this.setPosition( pos.x - 19 , pos.y );
 	}
 });

@@ -14,7 +14,8 @@
         "src/Basket.js",
         "src/Plats.js",
         "src/Dessert.js",
-        "src/Bullet.js"
+        "src/Bullet.js",
+        "src/hitDessert.js"
     ]
     
 }

@@ -1,5 +1,4 @@
 var GameLayer = cc.LayerColor.extend({
-        
     init: function() {
         
         this.dessertArr = [];
@@ -42,7 +41,7 @@ var GameLayer = cc.LayerColor.extend({
         this.plats = new Plats();
         this.plats.setPosition( new cc.Point( 230 , screenHeight-120 ));
         this.addChild( this.plats );
-        this.plats.scheduleUpdate();
+        //this.plats.scheduleUpdate();
     },
 
     randomPosition: function(){
@@ -67,25 +66,30 @@ var GameLayer = cc.LayerColor.extend({
                 var bx = this.bulletArr[j].getPositionX();
                 var by = this.bulletArr[j].getPositionY();
 
-                // var disX = Math.abs(dx , bx);
-                // var disY = Math.abs(dy , by);
-                // //console.log(disX +" // "+ disY);
-
-                // if ( dx == bx && disY < 50 ){
-                //     console.log("hit");
-                // //    this.bulletArr[j].unhit = false;
-                //  }
-
                 var disX = Math.abs(dx , bx);
-                //var disX = Math.abs(dx , bx);
-                 var disY = Math.abs(dy , by);
-                //console.log(disX +" // "+ disY);
-                //console.log(disX +" // "+ disY); 
+                var disY = Math.abs(dy , by);
+
                 if ( disX < 50 && disY < 50 ){
-                //    console.log("hit");
+                    this.afterShoot(this.dessertArr[i],this.bulletArr[j]);
+                    console.log("hit");
+                    //break;
                 }
+
             }
         }
+    },
+
+    afterShoot: function(dessert,bullet){
+        var x = dessert.getPositionX();
+        var y = dessert.getPositionY();
+
+        dessert.removeFromParent();
+        bullet.removeFromParent();
+
+        var hitdessert = new hitDessert();
+
+        hitdessert.setPosition( x , y );
+        this.addChild(hitdessert);        
     },
 
     // randomDessert: function(){

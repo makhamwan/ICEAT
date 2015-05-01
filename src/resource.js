@@ -4,7 +4,8 @@ var res = {
 	Basket_png : "res/images/Basket.png",	
 	Plats_png : "res/images/Plats.png",
 	Dessert1_png : "res/images/Dessert1.png",
-	Bullet_png : "res/images/Bullet.png"
+	Bullet_png : "res/images/Bullet.png",
+	hitDessert_png : "res/images/hitDessert.png"
 
 };
 
