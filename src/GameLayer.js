@@ -4,6 +4,8 @@ var GameLayer = cc.LayerColor.extend({
         this.dessertArr = [];
         this.bulletArr = [];
 
+        this.numB = 0;
+
         this._super( new cc.Color( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0 , 0 ) );
    
@@ -15,17 +17,13 @@ var GameLayer = cc.LayerColor.extend({
 
         this.initPlats();
         this.initBasket();
+
         this.scheduleUpdate();
 
         return true;
     },
 
     update: function(){
-        if(this.bulletArr.length != 0 ) {
-            for(var i=0 ; i<this.bulletArr.length ; i++) {
-                //console.log(this.bulletArr[i].getPositionX());
-            }
-        }
         this.randomPosition();
         this.checkPrecision();
     },
@@ -41,7 +39,6 @@ var GameLayer = cc.LayerColor.extend({
         this.plats = new Plats();
         this.plats.setPosition( new cc.Point( 230 , screenHeight-120 ));
         this.addChild( this.plats );
-        //this.plats.scheduleUpdate();
     },
 
     randomPosition: function(){
@@ -69,11 +66,14 @@ var GameLayer = cc.LayerColor.extend({
                 var disX = Math.abs(dx , bx);
                 var disY = Math.abs(dy , by);
 
-                if ( disX < 50 && disY < 50 ){
-                    this.afterShoot(this.dessertArr[i],this.bulletArr[j]);
-                    console.log("hit");
-                    //break;
-                }
+                // if ( disX < 100 && disY < 100 ){
+                //     // return true;
+                //     // console.log(true);
+
+                //     //this.afterShoot(this.dessertArr[i],this.bulletArr[j]);
+                //     //console.log("hit");
+                //     //break;
+                // }
 
             }
         }
@@ -105,6 +105,7 @@ var GameLayer = cc.LayerColor.extend({
         var bullet = new Bullet();
         var pos = this.basket.getPosition();
         bullet.setPosition(pos.x,pos.y);
+        console.log(this.numB++);
         bullet.scheduleUpdate();
         this.addChild(bullet);
         this.bulletArr.push(bullet);  
