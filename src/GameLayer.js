@@ -3,22 +3,19 @@ var GameLayer = cc.LayerColor.extend({
         
         this.dessertArr = [];
         this.bulletArr = [];
-
-        this.numB = 0;
-
         this._super( new cc.Color( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0 , 0 ) );
-   
+
         this.background = new cc.Sprite.create( "res/images/PlayScene.png" );
         this.background.setPosition(new cc.Point( screenWidth/2 , screenHeight/2 ));
         this.addChild( this.background );
 
-        this.addKeyboardHandlers();
-
         this.initPlats();
         this.initBasket();
-
+        this.initScoreBoard();
+        this.addKeyboardHandlers();
         this.scheduleUpdate();
+
 
         return true;
     },
@@ -61,11 +58,18 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild( this.plats );
     },
 
+    initScoreBoard: function(){
+        this.scoreboard = new ScoreBoard();
+        this.scoreboard.setPosition( new cc.Point( screenWidth-100 , screenHeight-50 ));
+        this.addChild( this.scoreboard );
+    },
+
     randomPosition: function(){
         var random = Math.floor(Math.random() * 90 );
-        var whereX = Math.floor(Math.random() * (screenWidth-400) );
-
+        //var random = 1;
         if ( random == 1){
+            var whereX = Math.floor(Math.random() * (screenWidth-400) );
+            console.log("INIT : " + whereX);
             var dessert = new Dessert();
             this.addChild( dessert );
             dessert.setPosition( new cc.Point( whereX , screenHeight-60 ) );
@@ -77,27 +81,33 @@ var GameLayer = cc.LayerColor.extend({
     checkPrecision: function(){
         for (var i = 0 ; i < this.dessertArr.length ; i++){
             for (var j = 0 ; j < this.bulletArr.length ; j++){
-                
-                var dx = this.dessertArr[i].getPositionX();
-                var dy = this.dessertArr[i].getPositionY();
-                var bx = this.bulletArr[j].getPositionX();
-                var by = this.bulletArr[j].getPositionY();
-
-                var disX = Math.abs(dx , bx);
-                var disY = Math.abs(dy , by);
                 //console.log("\nDISX : "+disX+"\nDISY : "+disY)
-                if ( disX < 150 && disY < 150 ){
+                if ( this.isHit(this.dessertArr[i] , this.bulletArr[j] ) ){
                     this.afterShoot(this.dessertArr[i],this.bulletArr[j]);
                     
                     this.bulletArr.splice(j,1);
                     this.dessertArr.splice(i,1);
 
                     console.log("hit");
-                    break;
                 }
 
             }
         }
+    },
+
+    isHit : function(obj1,obj2) {
+        if (obj1 != null && obj2 != null){        
+            var dx = obj1.getPositionX();
+            var dy = obj1.getPositionY();
+            var bx = obj2.getPositionX();
+            var by = obj2.getPositionY();
+
+            var disX = Math.abs(dx , bx);
+            var disY = Math.abs(dy , by);
+
+            return ( disX < 100 && disY < 100 );
+        }
+            return false;
     },
 
     afterShoot: function(dessert,bullet){
@@ -127,7 +137,6 @@ var GameLayer = cc.LayerColor.extend({
         var bullet = new Bullet();
         var pos = this.basket.getPosition();
         bullet.setPosition(pos.x,pos.y);
-        console.log(this.numB++);
         bullet.scheduleUpdate();
         this.addChild(bullet);
         this.bulletArr.push(bullet);  
