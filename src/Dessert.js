@@ -9,8 +9,6 @@ var Dessert = cc.Sprite.extend({
 
 	update: function() {
 		var pos = this.getPosition();
-		// console.log("DESSERT");
-		// console.log("\nPOSX : " + pos.x + "\nPOSY : " + pos.y);
 		if (pos.y<0){
 			this.removeFromParent();
 		}

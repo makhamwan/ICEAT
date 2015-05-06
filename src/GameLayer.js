@@ -6,15 +6,21 @@ var GameLayer = cc.LayerColor.extend({
         this._super( new cc.Color( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0 , 0 ) );
 
+        this.score = 0;
         this.background = new cc.Sprite.create( "res/images/PlayScene.png" );
         this.background.setPosition(new cc.Point( screenWidth/2 , screenHeight/2 ));
         this.addChild( this.background );
 
         this.initPlats();
         this.initBasket();
+        this.score_show = cc.LabelTTF.create( '0' , 'Arial' , 40);
+        this.score_show.setPosition( new cc.Point( screenWidth-100 , screenHeight-50 ));
+        this.addChild( this.score_show , 2);
         this.initScoreBoard();
         this.addKeyboardHandlers();
         this.scheduleUpdate();
+
+
 
 
         return true;
@@ -25,6 +31,7 @@ var GameLayer = cc.LayerColor.extend({
         this.checkPrecision();
         this.checkBulletOut();
         this.checkDessertOut();
+        this.printScore();
     },
 
     checkBulletOut: function(){
@@ -66,10 +73,8 @@ var GameLayer = cc.LayerColor.extend({
 
     randomPosition: function(){
         var random = Math.floor(Math.random() * 90 );
-        //var random = 1;
         if ( random == 1){
             var whereX = Math.floor(Math.random() * (screenWidth-400) );
-            console.log("INIT : " + whereX);
             var dessert = new Dessert();
             this.addChild( dessert );
             dessert.setPosition( new cc.Point( whereX , screenHeight-60 ) );
@@ -81,14 +86,13 @@ var GameLayer = cc.LayerColor.extend({
     checkPrecision: function(){
         for (var i = 0 ; i < this.dessertArr.length ; i++){
             for (var j = 0 ; j < this.bulletArr.length ; j++){
-                //console.log("\nDISX : "+disX+"\nDISY : "+disY)
                 if ( this.isHit(this.dessertArr[i] , this.bulletArr[j] ) ){
                     this.afterShoot(this.dessertArr[i],this.bulletArr[j]);
                     
                     this.bulletArr.splice(j,1);
                     this.dessertArr.splice(i,1);
-
-                    console.log("hit");
+                    this.score++;
+                    console.log(this.score);
                 }
 
             }
@@ -102,10 +106,10 @@ var GameLayer = cc.LayerColor.extend({
             var bx = obj2.getPositionX();
             var by = obj2.getPositionY();
 
-            var disX = Math.abs(dx , bx);
-            var disY = Math.abs(dy , by);
+            var disX = Math.abs(dx - bx);
+            var disY = Math.abs(dy - by);
 
-            return ( disX < 100 && disY < 100 );
+            return ( disX < 70 && disY < 70 );
         }
             return false;
     },
@@ -123,10 +127,6 @@ var GameLayer = cc.LayerColor.extend({
         hitdessert.scheduleUpdate();
         this.addChild(hitdessert);        
     },
-
-    // randomDessert: function(){
-
-    // },
 
     onKeyDown: function( keyCode, event ) {
         console.log(keyCode.toString());
@@ -161,6 +161,10 @@ var GameLayer = cc.LayerColor.extend({
             }
         }, this);  
     },
+
+    printScore: function(){
+        this.score_show.setString( this.score );
+    }
 
 });
 

@@ -14,4 +14,5 @@ var Bullet = cc.Sprite.extend({
 		else
 			this.setPosition( pos.x - 10 , pos.y );
 	}
+
 });
