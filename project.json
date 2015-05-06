@@ -16,7 +16,8 @@
         "src/Dessert.js",
         "src/Bullet.js",
         "src/hitDessert.js",
-        "src/ScoreBoard.js"
+        "src/ScoreBoard.js",
+        "src/TimeBoard.js"
     ]
     
 }

@@ -7,21 +7,34 @@ var GameLayer = cc.LayerColor.extend({
         this.setPosition( new cc.Point( 0 , 0 ) );
 
         this.score = 0;
+
+        this.sec = 0;
+        this.min = 2;
+
         this.background = new cc.Sprite.create( "res/images/PlayScene.png" );
         this.background.setPosition(new cc.Point( screenWidth/2 , screenHeight/2 ));
         this.addChild( this.background );
 
         this.initPlats();
         this.initBasket();
+     
         this.score_show = cc.LabelTTF.create( '0' , 'Arial' , 40);
-        this.score_show.setPosition( new cc.Point( screenWidth-100 , screenHeight-50 ));
+        this.score_show.setPosition( new cc.Point( screenWidth-165 , 40 ));
         this.addChild( this.score_show , 2);
+
+        this.labelMin = cc.LabelTTF.create( '2' , 'Arial' , 40);
+        this.labelMin.setPosition( new cc.Point( screenWidth - 130 , screenHeight-50 ));
+        this.addChild( this.labelMin , 2);
+
+        this.labelSec = cc.LabelTTF.create( '00' , 'Arial' , 40);
+        this.labelSec.setPosition( new cc.Point( screenWidth - 80 , screenHeight-50 ));
+        this.addChild( this.labelSec , 2);
+     
         this.initScoreBoard();
+        this.initTimeBoard();
         this.addKeyboardHandlers();
         this.scheduleUpdate();
-
-
-
+        this.schedule(this.countdown,1);
 
         return true;
     },
@@ -32,6 +45,25 @@ var GameLayer = cc.LayerColor.extend({
         this.checkBulletOut();
         this.checkDessertOut();
         this.printScore();
+//        this.countdown();
+    },
+
+    countdown: function(){
+        if(this.sec>0){
+            this.sec-=1;
+        }
+        else if(this.sec==0&&this.min!=0){
+            this.min-=1;
+            this.sec=59;
+        }
+        else if(this.sec==0&&this.min==0){
+        }
+        this.updateTime(this.min,this.sec);
+    },
+
+    updateTime: function(min,sec){
+        this.labelMin.setString(this.min);
+        this.labelSec.setString(this.sec);
     },
 
     checkBulletOut: function(){
@@ -67,8 +99,14 @@ var GameLayer = cc.LayerColor.extend({
 
     initScoreBoard: function(){
         this.scoreboard = new ScoreBoard();
-        this.scoreboard.setPosition( new cc.Point( screenWidth-100 , screenHeight-50 ));
+        this.scoreboard.setPosition( new cc.Point( screenWidth-150 , 50 ));
         this.addChild( this.scoreboard );
+    },
+
+    initTimeBoard: function(){
+        this.timeboard = new TimeBoard();
+        this.timeboard.setPosition( new cc.Point( screenWidth-100 , screenHeight-50 ));
+        this.addChild( this.timeboard );
     },
 
     randomPosition: function(){
@@ -134,12 +172,18 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     initBullet: function(){
+        if ( this.bulletArr.length >= 3 ){
+
+        }
+        else {
         var bullet = new Bullet();
         var pos = this.basket.getPosition();
         bullet.setPosition(pos.x,pos.y);
         bullet.scheduleUpdate();
         this.addChild(bullet);
-        this.bulletArr.push(bullet);  
+        this.bulletArr.push(bullet);
+        }
+
     },
 
     onKeyUp: function( keyCode, event ) {

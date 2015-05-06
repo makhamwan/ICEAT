@@ -7,14 +7,4 @@ var ScoreBoard = cc.Sprite.extend({
 
 	},
 
-	Ten: function(){
-		this._super();
-		this.initWithFile('res/images/0_ten.png');	
-	},
-
-	Digit: function(){
-		this._super();
-		this.initWithFile('res/images/0_digit.png');	
-	},
-
 });
