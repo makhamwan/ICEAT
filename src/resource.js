@@ -1,5 +1,6 @@
 var res = {
 
+	Background_png : "res/images/Background.png",
 	PlayScene_png : "res/images/PlayScene.png",
 	Basket_png : "res/images/Basket.png",	
 	Plats_png : "res/images/Plats.png",

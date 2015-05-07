@@ -23,8 +23,6 @@ var Basket = cc.Sprite.extend({
 	setDirection: function(keyCode){
 		if ( keyCode == cc.KEY.up ) {
             this.direction = Basket.DIR.UP;
-            //this.schedule(this.move , 0.01 );
-            //this.move();
         }
         else if ( keyCode == cc.KEY.down ) {
             this.direction = Basket.DIR.DOWN;

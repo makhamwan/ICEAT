@@ -57,7 +57,9 @@ var GameLayer = cc.LayerColor.extend({
             this.sec=59;
         }
         else if(this.sec==0&&this.min==0){
+        
         }
+
         this.updateTime(this.min,this.sec);
     },
 
@@ -112,7 +114,7 @@ var GameLayer = cc.LayerColor.extend({
     randomPosition: function(){
         var random = Math.floor(Math.random() * 90 );
         if ( random == 1){
-            var whereX = Math.floor(Math.random() * (screenWidth-400) );
+            var whereX = Math.floor(Math.random() * (screenWidth-400) + 80);
             var dessert = new Dessert();
             this.addChild( dessert );
             dessert.setPosition( new cc.Point( whereX , screenHeight-60 ) );
@@ -127,10 +129,14 @@ var GameLayer = cc.LayerColor.extend({
                 if ( this.isHit(this.dessertArr[i] , this.bulletArr[j] ) ){
                     this.afterShoot(this.dessertArr[i],this.bulletArr[j]);
                     
+                    if (this.score%10 == 0 && this.score>0) {
+                        this.dessertArr[i].setSpeed();
+                        console.log("current" + currentSpeed);
+                    }
+
                     this.bulletArr.splice(j,1);
                     this.dessertArr.splice(i,1);
                     this.score++;
-                    console.log(this.score);
                 }
 
             }
