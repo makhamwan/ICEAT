@@ -12,7 +12,11 @@ var Bullet = cc.Sprite.extend({
 			this.removeFromParent();
 		}
 		else
-			this.setPosition( pos.x - 10 , pos.y );
+			this.setPosition( pos.x - (currentSpeed+10) , pos.y );
+	},
+
+	getBulletY: function(){
+		return this.getPositionY();
 	}
 
 });

@@ -1,3 +1,4 @@
+var score = 0;
 var GameLayer = cc.LayerColor.extend({
     init: function() {
         
@@ -5,8 +6,6 @@ var GameLayer = cc.LayerColor.extend({
         this.bulletArr = [];
         this._super( new cc.Color( 127, 127, 127, 255 ) );
         this.setPosition( new cc.Point( 0 , 0 ) );
-
-        this.score = 0;
 
         this.sec = 0;
         this.min = 2;
@@ -45,19 +44,22 @@ var GameLayer = cc.LayerColor.extend({
         this.checkBulletOut();
         this.checkDessertOut();
         this.printScore();
-//        this.countdown();
     },
 
     countdown: function(){
         if(this.sec>0){
             this.sec-=1;
         }
+
         else if(this.sec==0&&this.min!=0){
             this.min-=1;
             this.sec=59;
         }
         else if(this.sec==0&&this.min==0){
-        
+            currentSpeed = 3;
+            speed = 7.4;
+
+            cc.director.runScene(new scoreScene);
         }
 
         this.updateTime(this.min,this.sec);
@@ -129,14 +131,26 @@ var GameLayer = cc.LayerColor.extend({
                 if ( this.isHit(this.dessertArr[i] , this.bulletArr[j] ) ){
                     this.afterShoot(this.dessertArr[i],this.bulletArr[j]);
                     
-                    if (this.score%10 == 0 && this.score>0) {
+                    if (score%10 == 0 && score>0) {
                         this.dessertArr[i].setSpeed();
                         console.log("current" + currentSpeed);
+                        this.basket.setSpeed();
+                        console.log("speed" + speed);
+                    }
+
+                    if (this.bulletArr[j].getBulletY()<225){
+                        score++;
+                    }
+
+                    else if (this.bulletArr[j].getBulletY()<350){
+                        score+=2;
+                    }
+                    else if (this.bulletArr[j].getBulletY()<475){
+                        score+=3;
                     }
 
                     this.bulletArr.splice(j,1);
                     this.dessertArr.splice(i,1);
-                    this.score++;
                 }
 
             }
@@ -197,6 +211,10 @@ var GameLayer = cc.LayerColor.extend({
         if (keyCode == 32){
             this.initBullet();
         }
+
+        if (keyCode == 27){
+            cc.director.runScene(new scoreScene);   
+        }
     },
 
     addKeyboardHandlers: function() {
@@ -213,7 +231,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     printScore: function(){
-        this.score_show.setString( this.score );
+        this.score_show.setString( score );
     }
 
 });

@@ -1,5 +1,5 @@
 
-var currentSpeed = 2;
+var currentSpeed = 3;
 
 var Dessert = cc.Sprite.extend({
 
@@ -18,7 +18,7 @@ var Dessert = cc.Sprite.extend({
 	},
 
 	setSpeed: function() {
-		currentSpeed+=2;
+		currentSpeed+=1;
 	}
 
 });

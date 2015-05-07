@@ -10,7 +10,7 @@ var hitDessert = cc.Sprite.extend({
 		if (pos.y<0){
 			this.removeFromParent();
 		}
-		this.setPosition( pos.x, pos.y - 5 );
+		this.setPosition( pos.x, pos.y - (currentSpeed/2) );
 
 	}
 
