@@ -10,16 +10,26 @@ var ShowScore = cc.Layer.extend({
     this.background = new cc.Sprite.create( "res/images/End.png" );
     this.background.setPosition(new cc.Point( screenWidth/2 , screenHeight/2 ));
     this.addChild( this.background );
-    this.createbutton();
     
-    this.score_show = cc.LabelTTF.create( '0' , 'Arial' , 50);
+    this.score_show = cc.LabelTTF.create( score , 'Arial' , 50);
+    if (score==0){
+        this.score_show.setString( '0' );
+    }
     this.score_show.setPosition( new cc.Point( screenWidth/2 , screenHeight-200 ));
     this.addChild( this.score_show , 2);
+    this.initScoreBoard();
     //console.log(score);
+    this.createbutton();
 	},
 
     update: function() {
 
+    },
+
+    initScoreBoard: function(){
+        this.board = new Board();
+        this.board.setPosition( new cc.Point( screenWidth/2 , screenHeight-200 ));
+        this.addChild( this.board );
     },
 
 
@@ -32,7 +42,7 @@ var ShowScore = cc.Layer.extend({
         this.ok = new cc.Menu( this.ok );
         this.ok.setPosition( new cc.Point( screenWidth/2 , screenHeight/2 ) );
         this.addChild(this.ok);
-
+        score = 0;
     }
 
 });

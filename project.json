@@ -19,7 +19,9 @@
         "src/Bullet.js",
         "src/hitDessert.js",
         "src/ScoreBoard.js",
-        "src/TimeBoard.js"
+        "src/TimeBoard.js",
+        "src/Board.js"
+
     ]
     
 }

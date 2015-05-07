@@ -18,7 +18,7 @@ var GameLayer = cc.LayerColor.extend({
         this.initBasket();
      
         this.score_show = cc.LabelTTF.create( '0' , 'Arial' , 40);
-        this.score_show.setPosition( new cc.Point( screenWidth-165 , 40 ));
+        this.score_show.setPosition( new cc.Point( screenWidth-156 , 40 ));
         this.addChild( this.score_show , 2);
 
         this.labelMin = cc.LabelTTF.create( '2' , 'Arial' , 40);
