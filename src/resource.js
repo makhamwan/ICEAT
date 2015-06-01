@@ -9,6 +9,7 @@ var res = {
 	hitDessert_png : "res/images/hitDessert.png",
 	Board_png : "res/images/Board.png",
 	TimeBoard_png : "res/images/TimeBoard.png",
+	bg_sound : "res/sound/backgroundsound.mp3"
 };
 
 var g_resources = [];

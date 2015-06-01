@@ -1,4 +1,5 @@
 var score = 0;
+var ran = 75;
 var GameLayer = cc.LayerColor.extend({
     init: function() {
         
@@ -58,7 +59,7 @@ var GameLayer = cc.LayerColor.extend({
         else if(this.sec==0&&this.min==0){
             currentSpeed = 3;
             speed = 7.4;
-
+            ran = 75;
             cc.director.runScene(new scoreScene);
         }
 
@@ -114,7 +115,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     randomPosition: function(){
-        var random = Math.floor(Math.random() * 90 );
+        var random = Math.floor(Math.random() * ran );
         if ( random == 1){
             var whereX = Math.floor(Math.random() * (screenWidth-400) + 80);
             var dessert = new Dessert();
@@ -136,6 +137,9 @@ var GameLayer = cc.LayerColor.extend({
                         console.log("current" + currentSpeed);
                         this.basket.setSpeed();
                         console.log("speed" + speed);
+                        if (ran > 30){ 
+                           ran-=5;
+                        }
                     }
 
                     if (this.bulletArr[j].getBulletY()<225){
@@ -152,7 +156,6 @@ var GameLayer = cc.LayerColor.extend({
                     this.bulletArr.splice(j,1);
                     this.dessertArr.splice(i,1);
                 }
-
             }
         }
     },
@@ -192,8 +195,7 @@ var GameLayer = cc.LayerColor.extend({
     },
 
     initBullet: function(){
-        if ( this.bulletArr.length >= 3 ){
-
+        if ( this.bulletArr.length >= 2 ){
         }
         else {
         var bullet = new Bullet();
@@ -202,6 +204,11 @@ var GameLayer = cc.LayerColor.extend({
         bullet.scheduleUpdate();
         this.addChild(bullet);
         this.bulletArr.push(bullet);
+        
+        if (score>0){
+            score--;
+        }
+
         }
 
     },
@@ -212,7 +219,7 @@ var GameLayer = cc.LayerColor.extend({
             this.initBullet();
         }
 
-        if (keyCode == 27){
+        if (keyCode == 27 && score != 0){
             cc.director.runScene(new scoreScene);   
         }
     },

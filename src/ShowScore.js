@@ -12,9 +12,6 @@ var ShowScore = cc.Layer.extend({
     this.addChild( this.background );
     
     this.score_show = cc.LabelTTF.create( score , 'Arial' , 50);
-    if (score==0){
-        this.score_show.setString( '0' );
-    }
     this.score_show.setPosition( new cc.Point( screenWidth/2 , screenHeight-200 ));
     this.addChild( this.score_show , 2);
     this.initScoreBoard();
