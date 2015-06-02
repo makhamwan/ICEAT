@@ -40,6 +40,9 @@ var ShowScore = cc.Layer.extend({
         this.ok.setPosition( new cc.Point( screenWidth/2 , screenHeight/2 ) );
         this.addChild(this.ok);
         score = 0;
+        currentSpeed = 3;
+        speed = 7.4;
+
     }
 
 });
