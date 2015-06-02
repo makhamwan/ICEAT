@@ -42,6 +42,7 @@ var ShowScore = cc.Layer.extend({
         score = 0;
         currentSpeed = 3;
         speed = 7.4;
+        ran = 75;
 
     }
 
