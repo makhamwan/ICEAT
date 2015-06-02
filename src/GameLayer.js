@@ -204,10 +204,6 @@ var GameLayer = cc.LayerColor.extend({
         bullet.scheduleUpdate();
         this.addChild(bullet);
         this.bulletArr.push(bullet);
-        
-        if (score>0){
-            score--;
-        }
 
         }
 
